@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import javax.swing.PopupFactory;
-
 /**
  * Example class using {@link java.util.List} and {@link java.util.Map}.
  * 
