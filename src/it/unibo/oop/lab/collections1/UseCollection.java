@@ -11,6 +11,7 @@ public final class UseCollection {
 	
 	private static final int ELEMS = 1_000_000;
     private static final int TO_MS = 1_000_000;
+    private static final int TIMES = 1_000;
 
     private UseCollection() {
     }
@@ -83,7 +84,10 @@ public final class UseCollection {
          * LinkedList, using the collections of point 5. In order to measure
          * times, use as example TestPerformance.java.
          */
-    	
+    	time = System.nanoTime();
+    	for (int i = 0; i < TIMES; i++) {
+    		
+    	}
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
