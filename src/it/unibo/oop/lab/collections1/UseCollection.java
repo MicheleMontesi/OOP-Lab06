@@ -1,7 +1,11 @@
 package it.unibo.oop.lab.collections1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
+
+import javax.swing.PopupFactory;
 
 /**
  * Example class using {@link java.util.List} and {@link java.util.Map}.
@@ -86,8 +90,18 @@ public final class UseCollection {
          */
     	time = System.nanoTime();
     	for (int i = 0; i < TIMES; i++) {
-    		
+    		array.get(array.size() / 2);
     	}
+    	time = System.nanoTime() - time;
+    	System.out.println("Time to read in array: " + time / TO_MS + "ms");
+    	
+    	time = System.nanoTime();
+    	for (int i = 0; i < TIMES; i++) {
+    		lList.get(lList.size() / 2);
+    	}
+    	time = System.nanoTime() - time;
+    	System.out.println("Time to read in lList: " + time / TO_MS + "ms");
+    	
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
@@ -104,8 +118,28 @@ public final class UseCollection {
          * 
          * Oceania -> 38,304,000
          */
+    	Map<String, Long> population = new HashMap<String, Long>()
+    	{/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		{
+    		put("Africa", 1_110_635_000L);
+    		put("Americas", 972_005_000L);
+    		put("Antarctica", 0L);
+    		put("Asia", 4_298_723_000L);
+    		put("Europe", 742_452_000L);
+    		put("Oceania", 38_304_000L);
+    	}};
+    	
         /*
          * 8) Compute the population of the world
          */
+    	Long worldPopulation = 0L;
+    	for (final Long i : population.values()) {
+    		worldPopulation += i;
+    	}
+    	System.out.println("World Population is: " + worldPopulation);
     }
 }
