@@ -35,8 +35,8 @@ public class Robot {
      * @throws PositionOutOfBoundException
      * @throws NotEnoughBatteryException
      */
-    public boolean moveUp() {
-        return moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
+    public void moveUp() {
+        moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
     }
 
     /**
@@ -45,8 +45,8 @@ public class Robot {
      * @throws PositionOutOfBoundException
      * @throws NotEnoughBatteryException
      */
-    public boolean moveDown() {
-        return this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
+    public void moveDown() {
+        this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
     }
 
     /**
@@ -55,8 +55,8 @@ public class Robot {
      * @throws PositionOutOfBoundException
      * @throws NotEnoughBatteryException
      */
-    public boolean moveLeft() {
-        return this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA,
+    public void moveLeft() {
+        this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA,
                 this.environment.getCurrPosY());
     }
 
@@ -66,8 +66,8 @@ public class Robot {
      * @throws PositionOutOfBoundException
      * @throws NotEnoughBatteryException
      */
-    public boolean moveRight() {
-        return this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA,
+    public void moveRight() {
+        this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA,
                 this.environment.getCurrPosY());
     }
 
@@ -88,9 +88,13 @@ public class Robot {
      * @return true if robot gets moved, false otherwise
      */
     private void moveToPosition(final int newX, final int newY) {
+    	if (isBatteryEnoughToMove()) {
             this.environment.move(newX, newY);
             this.consumeBatteryForMovement();
             this.log("Moved to position(" + newX + "," + newY + ").");
+    	} else {
+    		throw new NotEnoughBatteryException (batteryLevel, MOVEMENT_DELTA_CONSUMPTION);
+    	}
     }
 
     /**
