@@ -34,35 +34,37 @@ public final class BaseRobotTest {
         /*
          * 2) Move the robot right until it touches the world limit
          */
-        for (int i = 0; i < RobotEnvironment.WORLD_X_UPPER_LIMIT; i++) {
-            // check if position if coherent
-            assertTrue("[CHECKING MOVING RIGHT]", r1.moveRight());
-        }
-        // reached the right limit of the world
         try {
-        	assertFalse("[CHECKING MOVING RIGHT]", r1.moveRight());
-        } catch (Exception e) {
-        	fail(e.toString());
+	        for (int i = 0; i < RobotEnvironment.WORLD_X_UPPER_LIMIT; i++) {
+	            // check if position if coherent
+	            assertTrue("[CHECKING MOVING RIGHT]", r1.moveRight());
+	        }
+	        // reached the right limit of the world
+	        assertFalse("[CHECKING MOVING RIGHT]", r1.moveRight());
+	        fail ("Position out of bound");
+        } catch (PositionOutOfBoundException e) {
+	        // checking positions x=50; y=0
+	        assertEquals("[MOVING RIGHT ROBOT POS X]", RobotEnvironment.WORLD_X_UPPER_LIMIT, r1.getEnvironment().getCurrPosX());
+	        assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment().getCurrPosY());
         }
-        // checking positions x=50; y=0
-        assertEquals("[MOVING RIGHT ROBOT POS X]", RobotEnvironment.WORLD_X_UPPER_LIMIT, r1.getEnvironment().getCurrPosX());
-        assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment().getCurrPosY());
         /*
          * 2) Move to the top until it reaches the upper right conrner of the world
          */
-        for (int i = 0; i < RobotEnvironment.WORLD_Y_UPPER_LIMIT; i++) {
+        
+        try {
+        	for (int i = 0; i < RobotEnvironment.WORLD_Y_UPPER_LIMIT; i++) {
             // check if position if coherent
             assertTrue("[CHECKING MOVING UP]", r1.moveUp());
         }
         // reached the upper limit of the world
-        try {
         	assertFalse("[CHECKING MOVING UP]", r1.moveUp());
-        } catch (Exception e) {
-        	fail(e.toString());
-        }
+        	fail("Position out of bound");
+        } catch (PositionOutOfBoundException e) {
+        
         // checking positions x=50; y=80
         assertEquals("[MOVING RIGHT ROBOT POS X]", RobotEnvironment.WORLD_X_UPPER_LIMIT, r1.getEnvironment().getCurrPosX());
         assertEquals("[MOVING RIGHT ROBOT POS Y]", RobotEnvironment.WORLD_Y_UPPER_LIMIT, r1.getEnvironment().getCurrPosY());
+        }
     }
 
     /**
