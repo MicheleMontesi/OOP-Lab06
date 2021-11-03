@@ -84,7 +84,7 @@ public class Robot {
      * @return true if robot gets moved, false otherwise
      */
     private boolean moveToPosition(final int newX, final int newY) {
-        boolean returnValue = true;
+    	boolean returnValue = true;
         if (this.isBatteryEnoughToMove()) {
             if (this.environment.move(newX, newY)) {
                 this.consumeBatteryForMovement();

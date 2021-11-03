@@ -47,7 +47,7 @@ public class RobotEnvironment {
      *         only inside the environment's boundaries)
      */
     public boolean move(final int newX, final int newY) {
-        if (newX >= RobotEnvironment.WORLD_X_LOWER_LIMIT
+    	if (newX >= RobotEnvironment.WORLD_X_LOWER_LIMIT
                 && newX <= RobotEnvironment.WORLD_X_UPPER_LIMIT
                 && newY >= RobotEnvironment.WORLD_Y_LOWER_LIMIT
                 && newY <= RobotEnvironment.WORLD_Y_UPPER_LIMIT) {
