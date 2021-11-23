@@ -7,14 +7,9 @@ public class NotEnoughBatteryException extends IllegalStateException{
 	 */
 	private static final long serialVersionUID = 1L;
 	private final double battery;
-	private final double batteryRequired;
-	
-	
-
 	public NotEnoughBatteryException(double battery, double batteryRequired) {
 		super();
 		this.battery = battery;
-		this.batteryRequired = batteryRequired;
 	}
 
 	
